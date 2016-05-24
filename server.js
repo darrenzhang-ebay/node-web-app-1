@@ -2,7 +2,7 @@
  * Created by Darren on 5/17/2016.
  */
 
-/** TEST - CI - v1.1 **/
+/** TEST - CI - v1.2 **/
 
 var express = require('express');
 var app = express();
@@ -73,6 +73,6 @@ var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
 
-    console.log("ARE YOU KIDDING11? Example app listening at http://%s:%s", host, port)
+    console.log("v1.2 Example app listening at http://%s:%s", host, port)
 
 })
