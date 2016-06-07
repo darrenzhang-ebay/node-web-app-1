@@ -2,7 +2,7 @@
 # node:argon is the LTS of node docker image
 FROM node:argon
 
-# Set the working forder as the one that Jenkins will pull the updated codes
+# Set the working folder as the one that Jenkins will pull the updated codes
 WORKDIR /var/lib/jenkins/jobs/node1/workspace
 
 # Install app dependencies
