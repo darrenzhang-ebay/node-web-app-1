@@ -1,0 +1,6 @@
+docker build -t dazhang/node-web-app-1
+
+docker images
+
+docker run -p 49160:8081 -d dazhang/node-web-app-1
+
