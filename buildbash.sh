@@ -8,13 +8,13 @@ docker rm -f(docker ps -a -q)
 docker r
 
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1"
+VERSION="0.8.1.1"
 
 echo ${VERSION}
 
 echo "Clearing old images..."
 docker rmi $(docker images -q -f dangling=true)
-docker rm -f(docker ps -a -q)
+docker rm -f $(docker ps -a -q)
 docker rmi $(docker images -q | grep ${IMAGE})
 
 echo "Start building"
