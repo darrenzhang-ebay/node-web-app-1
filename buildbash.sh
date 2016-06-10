@@ -2,13 +2,8 @@
 
 set -o pipefail
 
-echo "Clearing old images..."
-docker rmi $(docker images -q -f dangling=true)
-docker rm -f(docker ps -a -q)
-docker r
-
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1.1"
+VERSION="0.8.1.2"
 
 echo ${VERSION}
 
