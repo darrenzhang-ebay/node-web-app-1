@@ -3,23 +3,23 @@
 set -o pipefail
 
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1.5"
+VERSION="0.8.1.6"
 
 echo ${VERSION}
 echo
 
 echo "==================="
 echo "Killing all running containers..."
-docker kill $(docker ps -q)
+docker kill -f $(docker ps -q)
 
 echo "Deleting all stopped containers..."
-docker rm $(docker ps -a -q)
+docker rm -f $(docker ps -a -q)
 
 echo "Deleting all untagged images..."
-docker rmi $(docker images -q -f "dangling=true")
+docker rmi -f $(docker images -q -f "dangling=true")
 
 echo "Deleting all old images..."
-docker rmi $(docker images -q)
+docker rmi -f $(docker images -q)
 
 echo "====================="
 
