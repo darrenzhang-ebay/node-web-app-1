@@ -1,33 +1,31 @@
 #!/bin/bash
-
+#~/.bush_alias
 set -o pipefail
 
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1.4"
+VERSION="0.8.1.5"
 
 echo ${VERSION}
 echo
 
-echo "======================================================"
+echo "==================="
 echo "Killing all running containers..."
-alias dockerkillall='docker kill $(docker ps -q)'
+docker kill $(docker ps -q)
 
 echo "Deleting all stopped containers..."
-alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
+docker rm $(docker ps -a -q)
 
 echo "Deleting all untagged images..."
-alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f "dangling=true")'
-
-echo "Deleting all stopped containers and untagged images..."
-alias dockerclean='dockercleanc || true && dockercleani'
+docker rmi $(docker images -q -f "dangling=true")
 
 echo "Deleting all old images..."
-alias dockercleanall='docker rmi $(docker images -q)'
+docker rmi $(docker images -q)
 
-echo "======================================================"
-echo "Start building"
+echo "====================="
+
+echo "Start building image"
 docker build -t ${IMAGE}:${VERSION} . | sudo tee build.log || exit 1
-echo "End building"
+echo "End building image"
 
 echo "Get the latest ID"
 ID=$(tail -1 build.log | awk '{print $3;}')
