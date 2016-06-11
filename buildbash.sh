@@ -3,11 +3,12 @@
 set -o pipefail
 
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1.3"
+VERSION="0.8.1.4"
 
 echo ${VERSION}
 echo
 
+echo "======================================================"
 echo "Killing all running containers..."
 alias dockerkillall='docker kill $(docker ps -q)'
 
@@ -15,11 +16,15 @@ echo "Deleting all stopped containers..."
 alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
 
 echo "Deleting all untagged images..."
-alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
+alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f "dangling=true")'
 
 echo "Deleting all stopped containers and untagged images..."
 alias dockerclean='dockercleanc || true && dockercleani'
 
+echo "Deleting all old images..."
+alias dockercleanall='docker rmi $(docker images -q)'
+
+echo "======================================================"
 echo "Start building"
 docker build -t ${IMAGE}:${VERSION} . | sudo tee build.log || exit 1
 echo "End building"
