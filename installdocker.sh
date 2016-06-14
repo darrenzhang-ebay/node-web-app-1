@@ -4,6 +4,8 @@ set -o pipefail
 
 echo "========================="
 echo "Update the package information"
+echo "========================="
+echo ""
 /usr/bin/apt-get update
 /usr/bin/apt-get install apt-transport-https ca-certificates
 # echo "Adding the new GPG key"
@@ -11,16 +13,23 @@ echo "Update the package information"
 
 echo "========================="
 echo "Update the source entry"
+echo "========================="
+echo ""
 cd /etc/apt/sources.list.d/
 touch docker.list
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > docker.list
 
 echo "========================="
 echo "Install Docker"
-/usr/bin/apt-get update /usr/bin/apt-get install docker-engine && service docker start
+echo "========================="
+echo ""
+/usr/bin/apt-get update /usr/bin/apt-get install docker-engine
+service docker start
 
 echo "========================="
-echo "Create a docker group"
+echo "Create a docker group and add to the group"
+echo "========================="
+echo ""
 groupadd docker
 usermod -aG docker sysadmin
 
