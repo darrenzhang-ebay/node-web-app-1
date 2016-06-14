@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #~/.bush_alias
 set -o pipefail
 
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1.6"
+VERSION="0.8.1.8"
 
 echo ${VERSION}
 echo
