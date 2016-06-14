@@ -3,7 +3,7 @@
 set -o pipefail
 
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1.9"
+VERSION="0.8.1.10"
 
 echo ${VERSION}
 echo
