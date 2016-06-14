@@ -3,7 +3,7 @@
 set -o pipefail
 
 IMAGE="dazhang/node-web-app-1"
-VERSION="0.8.1.13"
+VERSION="0.8.1.14"
 
 echo ${VERSION}
 echo
@@ -36,6 +36,7 @@ docker tag $ID ${IMAGE}:latest
 echo "pushing the latest to hub"
 docker login -u dazhang -p Passw0rd
 docker push ${IMAGE}:${VERSION}
+docker push ${IMAGE}
 
 echo "End"
 
